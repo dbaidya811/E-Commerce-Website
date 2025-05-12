@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupons - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96" />
+     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        .coupons-section {
+            padding: 80px 0;
+        }
+        
+        .coupon-card {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            background: #f9f9f9;
+            transition: transform 0.3s;
+        }
+        
+        .coupon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .coupon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .coupon-title {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin: 0;
+        }
+        
+        .coupon-discount {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .coupon-description {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .coupon-code {
+            background: #fff;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--secondary-color);
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #ff3040;
+        }
+        
+        .coupon-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .coupon-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .expired {
+            opacity: 0.7;
+        }
+        
+        .expired .coupon-badge {
+            background: #888;
+        }
+        
+        .coupon-instructions {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .coupon-instructions h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        
+        .coupon-instructions ol {
+            padding-left: 20px;
+        }
+        
+        .coupon-instructions li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">ShopEase</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Coupons Section -->
+    <section class="coupons-section">
+        <div class="container">
+            <h2 class="title">Available Coupons</h2>
+            
+            <div class="coupon-instructions">
+                <h3>How to Use Coupons</h3>
+                <ol>
+                    <li>Browse through our available coupons below.</li>
+                    <li>Click the "Copy Code" button to copy the coupon code.</li>
+                    <li>During checkout, paste the code in the "Apply Coupon" field.</li>
+                    <li>The discount will be applied to your order automatically.</li>
+                </ol>
+                <p><strong>Note:</strong> Each coupon can only be used once per account and has an expiration date. Make sure to check the terms and conditions for each coupon.</p>
+            </div>
+            
+            <div class="row">
+                <!-- Coupon 1 -->
+                <div class="col-3">
+                    <div class="coupon-card">
+                        <div class="coupon-badge">NEW USER</div>
+                        <div class="coupon-header">
+                            <h3 class="coupon-title">Welcome Offer</h3>
+                            <span class="coupon-discount">20% OFF</span>
+                        </div>
+                        <p class="coupon-description">Get 20% off on your first purchase. Minimum order value $50.</p>
+                        <div>
+                            <span class="coupon-code">WELCOME20</span>
+                            <button type="button" class="copy-btn" onclick="copyCoupon('WELCOME20')">Copy Code</button>
+                        </div>
+                        <div class="coupon-footer">
+                            <span>Valid until: May 31, 2025</span>
+                            <a href="products.html" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coupon 2 -->
+                <div class="col-3">
+                    <div class="coupon-card">
+                        <div class="coupon-badge">ELECTRONICS</div>
+                        <div class="coupon-header">
+                            <h3 class="coupon-title">Tech Sale</h3>
+                            <span class="coupon-discount">15% OFF</span>
+                        </div>
+                        <p class="coupon-description">15% off on all electronics. Maximum discount $100.</p>
+                        <div>
+                            <span class="coupon-code">TECH15</span>
+                            <button type="button" class="copy-btn" onclick="copyCoupon('TECH15')">Copy Code</button>
+                        </div>
+                        <div class="coupon-footer">
+                            <span>Valid until: June 15, 2025</span>
+                            <a href="products.html?category=electronics" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coupon 3 -->
+                <div class="col-3">
+                    <div class="coupon-card">
+                        <div class="coupon-badge">FASHION</div>
+                        <div class="coupon-header">
+                            <h3 class="coupon-title">Fashion Deal</h3>
+                            <span class="coupon-discount">25% OFF</span>
+                        </div>
+                        <p class="coupon-description">25% off on clothing and accessories. Minimum order value $75.</p>
+                        <div>
+                            <span class="coupon-code">STYLE25</span>
+                            <button type="button" class="copy-btn" onclick="copyCoupon('STYLE25')">Copy Code</button>
+                        </div>
+                        <div class="coupon-footer">
+                            <span>Valid until: June 30, 2025</span>
+                            <a href="products.html?category=fashion" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coupon 4 -->
+                <div class="col-3">
+                    <div class="coupon-card">
+                        <div class="coupon-badge">FREE SHIPPING</div>
+                        <div class="coupon-header">
+                            <h3 class="coupon-title">Free Delivery</h3>
+                            <span class="coupon-discount">$0 SHIPPING</span>
+                        </div>
+                        <p class="coupon-description">Free shipping on all orders above $100. Valid for all products.</p>
+                        <div>
+                            <span class="coupon-code">FREESHIP</span>
+                            <button type="button" class="copy-btn" onclick="copyCoupon('FREESHIP')">Copy Code</button>
+                        </div>
+                        <div class="coupon-footer">
+                            <span>Valid until: July 15, 2025</span>
+                            <a href="products.html" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coupon 5 -->
+                <div class="col-3">
+                    <div class="coupon-card">
+                        <div class="coupon-badge">HOME</div>
+                        <div class="coupon-header">
+                            <h3 class="coupon-title">Home Essentials</h3>
+                            <span class="coupon-discount">10% OFF</span>
+                        </div>
+                        <p class="coupon-description">10% off on home &amp; kitchen products. No minimum order.</p>
+                        <div>
+                            <span class="coupon-code">HOME10</span>
+                            <button type="button" class="copy-btn" onclick="copyCoupon('HOME10')">Copy Code</button>
+                        </div>
+                        <div class="coupon-footer">
+                            <span>Valid until: June 20, 2025</span>
+                            <a href="products.html?category=home" class="btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coupon 6 -->
+                <div class="col-3">
+                    <div class="coupon-card expired">
+                        <div class="coupon-badge">EXPIRED</div>
+                        <div class="coupon-header">
+                            <h3 class="coupon-title">Weekend Sale</h3>
+                            <span class="coupon-discount">30% OFF</span>
+                        </div>
+                        <p class="coupon-description">30% off on selected items. Limited time offer.</p>
+                        <div>
+                            <span class="coupon-code">WEEKEND30</span>
+                            <button type="button" class="copy-btn" disabled>Expired</button>
+                        </div>
+                        <div class="coupon-footer">
+                            <span>Expired on: May 1, 2025</span>
+                            <span>No longer valid</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products, special offers, and more!</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="Play Store">
+                        <img src="images/app-store.png" alt="App Store">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <h3>ShopEase</h3>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Shopping Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="coupons.html">Coupons</a></li>
+                        <li><a href="blog.html">Blog Post</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="affiliate.html">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2025 - ShopEase</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // Function to copy coupon code
+        function copyCoupon(code) {
+            navigator.clipboard.writeText(code)
+                .then(() => {
+                    showNotification(`Coupon code ${code} copied to clipboard!`);
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                    showNotification('Failed to copy code. Please try again.', true);
+                });
+        }
+        
+        // Toggle Menu for Mobile View
+        function toggleMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.maxHeight) {
+                menuItems.style.maxHeight = null;
+            } else {
+                menuItems.style.maxHeight = '200px';
+            }
+        }
+    </script>
+</body>
+</html>

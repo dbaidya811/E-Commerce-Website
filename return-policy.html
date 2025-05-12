@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Policy - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        .policy-section {
+            padding: 80px 0;
+        }
+        
+        .policy-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .policy-content h2 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .policy-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .policy-content ul, .policy-content ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .policy-content li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        
+        .policy-content strong {
+            color: var(--secondary-color);
+        }
+        
+        .policy-steps {
+            margin: 30px 0;
+        }
+        
+        .step-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .policy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .policy-table th, .policy-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .policy-table th {
+            background: #f5f5f5;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .policy-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .policy-note {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .policy-note p {
+            margin: 0;
+        }
+        
+        .policy-contact {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .policy-contact p {
+            margin: 0;
+        }
+        
+        .faq-section {
+            margin-top: 50px;
+        }
+        
+        .accordion {
+            margin-top: 30px;
+        }
+        
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .accordion-header {
+            background: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .accordion-header:hover {
+            background: #f5f5f5;
+        }
+        
+        .accordion-content {
+            background: white;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion-content p {
+            padding: 20px 0;
+        }
+        
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+        
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">ShopEase</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Return Policy Section -->
+    <section class="policy-section">
+        <div class="container">
+            <h2 class="title">Return Policy</h2>
+            
+            <div class="policy-content">
+                <h2>Our Return &amp; Refund Policy</h2>
+                <p>At ShopEase, we want you to be completely satisfied with your purchase. If you're not entirely happy with your order, we're here to help.</p>
+                
+                <div class="policy-note">
+                    <p><strong>Note:</strong> Please read this policy carefully before making a purchase. By placing an order with ShopEase, you agree to the terms outlined in this policy.</p>
+                </div>
+                
+                <h2>Return Eligibility</h2>
+                <p>You may return most new, unopened items within 30 days of delivery for a full refund. We also accept returns of used items within 14 days of delivery if the item is defective or damaged upon receipt.</p>
+                
+                <p>To be eligible for a return, your item must be:</p>
+                <ul>
+                    <li>In the same condition that you received it</li>
+                    <li>In the original packaging</li>
+                    <li>Accompanied by the receipt or proof of purchase</li>
+                </ul>
+                
+                <h2>Items Not Eligible for Return</h2>
+                <p>The following items cannot be returned:</p>
+                <ul>
+                    <li>Gift cards</li>
+                    <li>Downloadable software products</li>
+                    <li>Personal care items (for hygiene reasons)</li>
+                    <li>Perishable goods</li>
+                    <li>Custom-made or personalized items</li>
+                    <li>Items marked as "Final Sale" or "Non-Returnable"</li>
+                </ul>
+                
+                <h2>Return Process</h2>
+                <div class="policy-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Initiate Your Return</h3>
+                            <p>Log in to your ShopEase account, go to "Order History," find the order containing the item you want to return, and click "Return Item." Alternatively, you can contact our customer service team at <a href="mailto:returns@shopease.com">returns@shopease.com</a>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Package Your Return</h3>
+                            <p>Pack the item securely in its original packaging along with all accessories, manuals, and free gifts (if any). Include a copy of your receipt or order confirmation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Ship Your Return</h3>
+                            <p>Use the prepaid shipping label provided in your return confirmation email (if applicable) or ship the item to the address provided. We recommend using a trackable shipping service.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Refund Processing</h3>
+                            <p>Once we receive and inspect your return, we'll send you an email to notify you that we've received your returned item. We'll also notify you of the approval or rejection of your refund. If approved, your refund will be processed within 5-7 business days.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2>Refunds</h2>
+                <p>Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund.</p>
+                
+                <p>If approved, your refund will be processed, and a credit will automatically be applied to your original method of payment within 5-7 business days. Please note that depending on your credit card company, it may take an additional 2-10 business days for the refund to appear on your statement.</p>
+                
+                <h2>Late or Missing Refunds</h2>
+                <p>If you haven't received a refund yet, first check your bank account again. Then contact your credit card company, it may take some time before your refund is officially posted. Next, contact your bank. There is often some processing time before a refund is posted. If you've done all of this and you still have not received your refund, please contact us at <a href="mailto:returns@shopease.com">returns@shopease.com</a>.</p>
+                
+                <h2>Exchanges</h2>
+                <p>We only replace items if they are defective or damaged. If you need to exchange it for the same item, send us an email at <a href="mailto:returns@shopease.com">returns@shopease.com</a> and ship your item to the address provided.</p>
+                
+                <h2>Return Shipping Costs</h2>
+                <table class="policy-table">
+                    <thead>
+                        <tr>
+                            <th>Return Reason</th>
+                            <th>Who Pays Shipping</th>
+                            <th>Refund Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Defective/Damaged Item</td>
+                            <td>ShopEase</td>
+                            <td>Full Refund (including original shipping)</td>
+                        </tr>
+                        <tr>
+                            <td>Wrong Item Shipped</td>
+                            <td>ShopEase</td>
+                            <td>Full Refund (including original shipping)</td>
+                        </tr>
+                        <tr>
+                            <td>Changed Mind</td>
+                            <td>Customer</td>
+                            <td>Product Cost Only (original shipping not refunded)</td>
+                        </tr>
+                        <tr>
+                            <td>Ordered Wrong Item</td>
+                            <td>Customer</td>
+                            <td>Product Cost Only (original shipping not refunded)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="policy-contact">
+                    <p><strong>Need help with your return?</strong> Contact our customer service team at <a href="mailto:returns@shopease.com">returns@shopease.com</a> or call us at +1 (555) 123-4567 during business hours.</p>
+                </div>
+                
+                <div class="faq-section">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span>How long do I have to return an item?</span>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>You have 30 days from the date of delivery to return most new, unopened items. For used items that are defective or damaged upon receipt, you have 14 days to initiate a return.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span>Can I return an item if I don't have the original packaging?</span>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>We strongly recommend returning items in their original packaging to ensure they aren't damaged during transit. If you no longer have the original packaging, please contact our customer service team for guidance.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span>How long does it take to process a refund?</span>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Once we receive your return, it typically takes 1-2 business days to inspect the item and process your refund. After processing, it takes 5-7 business days for the refund to be credited to your original payment method. Depending on your bank or credit card company, it may take an additional 2-10 business days for the refund to appear on your statement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span>Can I return a gift?</span>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Yes, you can return a gift. However, the refund will be issued as a store credit to the gift recipient. The original purchaser will not be notified of the return. To initiate a gift return, please contact our customer service team with your order details.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <span>What if my item arrives damaged?</span>
+                                <i class="fas fa-chevron-down accordion-icon"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <p>If your item arrives damaged, please take photos of the damaged item and packaging, and contact our customer service team within 48 hours of delivery. We'll arrange for a return shipping label and process a replacement or refund as soon as possible.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products, special offers, and more!</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="Play Store">
+                        <img src="images/app-store.png" alt="App Store">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <h3>ShopEase</h3>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Shopping Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="coupons.html">Coupons</a></li>
+                        <li><a href="blog.html">Blog Post</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="affiliate.html">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2025 - ShopEase</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // Toggle Menu for Mobile View
+        function toggleMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.maxHeight) {
+                menuItems.style.maxHeight = null;
+            } else {
+                menuItems.style.maxHeight = '200px';
+            }
+        }
+        
+        // Toggle FAQ Accordion
+        function toggleAccordion(element) {
+            const accordionItem = element.parentElement;
+            const isActive = accordionItem.classList.contains('active');
+            
+            // Close all accordion items
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already open
+            if (!isActive) {
+                accordionItem.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

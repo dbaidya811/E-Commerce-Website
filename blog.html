@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        .blog-section {
+            padding: 80px 0;
+        }
+        
+        .blog-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .blog-filter button {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        
+        .blog-filter button:hover {
+            color: var(--primary-color);
+        }
+        
+        .blog-filter button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .blog-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .blog-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-category {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 14px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-author img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
+        }
+        
+        .featured-post {
+            position: relative;
+            margin-bottom: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .featured-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+        }
+        
+        .featured-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .featured-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .featured-excerpt {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .featured-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .featured-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .featured-author img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid white;
+        }
+        
+        .blog-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        
+        .blog-pagination span {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background: #f1f2f6;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .blog-pagination span.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .blog-pagination span:hover:not(.active) {
+            background: #e0e0e0;
+        }
+        
+        .blog-search {
+            margin-bottom: 40px;
+            display: flex;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .blog-search input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .blog-search button {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .blog-search button:hover {
+            background: #ff3040;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">ShopEase</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <h2 class="title">Our Blog</h2>
+            
+            <!-- Blog Search -->
+            <div class="blog-search">
+                <input type="text" placeholder="Search articles...">
+                <button type="button">Search</button>
+            </div>
+            
+            <!-- Blog Filter -->
+            <div class="blog-filter">
+                <button type="button" class="active" data-category="all">All</button>
+                <button type="button" data-category="fashion">Fashion</button>
+                <button type="button" data-category="technology">Technology</button>
+                <button type="button" data-category="lifestyle">Lifestyle</button>
+                <button type="button" data-category="shopping">Shopping Tips</button>
+            </div>
+            
+            <!-- Featured Post -->
+            <div class="featured-post">
+                <!-- <img src="https://i.pinimg.com/736x/e1/1a/22/e11a22ea2a347f8de521e85dd48092cd.jpg" alt="Featured Blog Post" class="featured-img"> -->
+                <div class="featured-content">
+                    <span class="featured-badge">FEATURED</span>
+                    <h2 class="featured-title">The Future of E-Commerce: Trends to Watch in 2025</h2>
+                    <p class="featured-excerpt">Discover the emerging technologies and consumer behaviors that are shaping the future of online shopping. From AI-powered recommendations to augmented reality try-ons, we explore what's next in e-commerce.</p>
+                    <div class="featured-meta">
+                        <div class="featured-author">
+                            <!-- <img src="" alt="Author"> -->
+                            <div>
+                                <p>Sarah Johnson</p>
+                                <span>May 10, 2025</span>
+                            </div>
+                        </div>
+                        <a href="blog-post.html" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Blog Post 1 -->
+                <div class="col-3">
+                    <div class="blog-card">
+                        <!-- <img src="images/blog-1.jpg" alt="Blog Post" class="blog-img"> -->
+                        <div class="blog-content">
+                            <span class="blog-category">Technology</span>
+                            <h3 class="blog-title">How Smart Devices Are Changing the Way We Shop</h3>
+                            <p class="blog-excerpt">From voice assistants to smart refrigerators, discover how connected devices are revolutionizing the shopping experience.</p>
+                            <a href="blog-post.html" class="read-more">Read More</a>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <!-- <img src="images/user-2.jpg" alt="Author"> -->
+                                    <span>Mike Anderson</span>
+                                </div>
+                                <span>May 8, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="col-3">
+                    <div class="blog-card">
+                        <!-- <img src="images/blog-2.jpg" alt="Blog Post" class="blog-img"> -->
+                        <div class="blog-content">
+                            <span class="blog-category">Fashion</span>
+                            <h3 class="blog-title">Summer Fashion Trends: What's Hot This Season</h3>
+                            <p class="blog-excerpt">Stay ahead of the curve with our guide to this summer's most stylish trends, colors, and must-have accessories.</p>
+                            <a href="blog-post.html" class="read-more">Read More</a>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <!-- <img src="images/user-3.jpg" alt="Author"> -->
+                                    <span>Emily Parker</span>
+                                </div>
+                                <span>May 5, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="col-3">
+                    <div class="blog-card">
+                        <!-- <img src="images/blog-3.jpg" alt="Blog Post" class="blog-img"> -->
+                        <div class="blog-content">
+                            <span class="blog-category">Shopping Tips</span>
+                            <h3 class="blog-title">10 Ways to Save Money on Your Online Purchases</h3>
+                            <p class="blog-excerpt">Learn expert strategies for finding the best deals, using coupons effectively, and maximizing your savings when shopping online.</p>
+                            <a href="blog-post.html" class="read-more">Read More</a>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <!-- <img src="images/user-4.jpg" alt="Author"> -->
+                                    <span>David Wilson</span>
+                                </div>
+                                <span>May 1, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 4 -->
+                <div class="col-3">
+                    <div class="blog-card">
+                        <!-- <img src="images/blog-4.jpg" alt="Blog Post" class="blog-img"> -->
+                        <div class="blog-content">
+                            <span class="blog-category">Lifestyle</span>
+                            <h3 class="blog-title">Creating a Sustainable Home: Eco-Friendly Products We Love</h3>
+                            <p class="blog-excerpt">Discover our curated selection of environmentally conscious products that help reduce waste and create a more sustainable living space.</p>
+                            <a href="blog-post.html" class="read-more">Read More</a>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <!-- <img src="images/user-1.jpg" alt="Author"> -->
+                                    <span>Sarah Johnson</span>
+                                </div>
+                                <span>April 28, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 5 -->
+                <div class="col-3">
+                    <div class="blog-card">
+                        <!-- <img src="images/blog-5.jpg" alt="Blog Post" class="blog-img"> -->
+                        <div class="blog-content">
+                            <span class="blog-category">Technology</span>
+                            <h3 class="blog-title">The Best Tech Gadgets for Productivity in 2025</h3>
+                            <p class="blog-excerpt">From smart notebooks to AI-powered assistants, these are the must-have gadgets that will boost your productivity this year.</p>
+                            <a href="blog-post.html" class="read-more">Read More</a>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <!-- <img src="images/user-2.jpg" alt="Author"> -->
+                                    <span>Mike Anderson</span>
+                                </div>
+                                <span>April 25, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 6 -->
+                <div class="col-3">
+                    <div class="blog-card">
+                        <!-- <img src="images/blog-6.jpg" alt="Blog Post" class="blog-img"> -->
+                        <div class="blog-content">
+                            <span class="blog-category">Shopping Tips</span>
+                            <h3 class="blog-title">Understanding Product Reviews: How to Make Informed Decisions</h3>
+                            <p class="blog-excerpt">Learn how to navigate online reviews, spot fake testimonials, and use customer feedback to make better purchasing decisions.</p>
+                            <a href="blog-post.html" class="read-more">Read More</a>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <!-- <img src="images/user-3.jpg" alt="Author"> -->
+                                    <span>Emily Parker</span>
+                                </div>
+                                <span>April 20, 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Blog Pagination -->
+            <div class="blog-pagination">
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>...</span>
+                <span>Next &raquo;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products, special offers, and more!</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="Play Store">
+                        <img src="images/app-store.png" alt="App Store">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <h3>ShopEase</h3>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Shopping Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="coupons.html">Coupons</a></li>
+                        <li><a href="blog.html">Blog Post</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="affiliate.html">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2025 - ShopEase</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // Toggle Menu for Mobile View
+        function toggleMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.maxHeight) {
+                menuItems.style.maxHeight = null;
+            } else {
+                menuItems.style.maxHeight = '200px';
+            }
+        }
+        
+        // Blog Category Filter
+        document.querySelectorAll('.blog-filter button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.blog-filter button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // In a real application, this would filter the blog posts
+                const category = this.getAttribute('data-category');
+                console.log(`Filtering by category: ${category}`);
+                
+                // For demo purposes, just show a notification
+                if (category !== 'all') {
+                    showNotification(`Showing ${category} articles`);
+                } else {
+                    showNotification('Showing all articles');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

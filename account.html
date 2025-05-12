@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        .account-section {
+            padding: 80px 0;
+        }
+        
+        .form-container {
+            background: #fff;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .form-btn.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #ff3040;
+        }
+        
+        .form-toggle {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        #LoginForm, #RegisterForm {
+            display: none;
+        }
+        
+        .form-container.login #LoginForm {
+            display: block;
+        }
+        
+        .form-container.register #RegisterForm {
+            display: block;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        
+        .forgot-password a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .forgot-password a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .social-login p {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .social-login p::before,
+        .social-login p::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #ddd;
+        }
+        
+        .social-login p::before {
+            left: 0;
+        }
+        
+        .social-login p::after {
+            right: 0;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            color: var(--secondary-color);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .dashboard {
+            display: none;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-header h2 {
+            margin: 0;
+        }
+        
+        .logout-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #3a4452;
+        }
+        
+        .dashboard-menu {
+            background: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .dashboard-menu li {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .dashboard-menu a {
+            display: block;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: all 0.3s;
+        }
+        
+        .dashboard-menu a:hover,
+        .dashboard-menu a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .dashboard-menu i {
+            margin-right: 5px;
+        }
+        
+        .dashboard-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-history {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .order-history th,
+        .order-history td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .order-history th {
+            background: #f5f5f5;
+        }
+        
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-delivered {
+            background: #e6f7e6;
+            color: #2ed573;
+        }
+        
+        .status-processing {
+            background: #e6f0ff;
+            color: #3742fa;
+        }
+        
+        .status-cancelled {
+            background: #ffe6e6;
+            color: #ff4757;
+        }
+        
+        .view-details {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .view-details:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">ShopEase</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Account Section -->
+    <section class="account-section">
+        <div class="container">
+            <h2 class="title">My Account</h2>
+            
+            <!-- Login/Register Forms -->
+            <div class="form-container login" id="accountForms">
+                <div class="form-toggle">
+                    <button type="button" class="form-btn active" onclick="showLoginForm()">Login</button>
+                    <button type="button" class="form-btn" onclick="showRegisterForm()">Register</button>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="LoginForm">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                    
+                    <div class="social-login">
+                        <p>Or Login With</p>
+                        <div class="social-icons">
+                            <a href="https://accounts.google.com/" aria-label="Google"><i class="fab fa-google"></i></a>
+                            <a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </form>
+                
+                <!-- Register Form -->
+                <form id="RegisterForm">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <input type="password" id="register-confirm-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Register</button>
+                </form>
+            </div>
+            
+            <!-- User Dashboard (will be shown after login) -->
+            <div class="dashboard" id="userDashboard">
+                <div class="dashboard-header">
+                    <h2>Welcome, <span id="user-name">John Doe</span></h2>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+                
+                <div class="dashboard-menu">
+                    <ul>
+                        <li><a href="#" class="active" onclick="showDashboardTab('orders')"><i class="fas fa-shopping-bag"></i> My Orders</a></li>
+                        <li><a href="#" onclick="showDashboardTab('wishlist')"><i class="fas fa-heart"></i> Wishlist</a></li>
+                        <li><a href="#" onclick="showDashboardTab('profile')"><i class="fas fa-user"></i> Profile</a></li>
+                        <li><a href="#" onclick="showDashboardTab('address')"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
+                        <li><a href="#" onclick="showDashboardTab('settings')"><i class="fas fa-cog"></i> Settings</a></li>
+                    </ul>
+                </div>
+                
+                <div class="dashboard-content" id="orders-tab">
+                    <h3>Order History</h3>
+                    <table class="order-history">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD12345</td>
+                                <td>May 10, 2025</td>
+                                <td>$125.00</td>
+                                <td><span class="order-status status-delivered">Delivered</span></td>
+                                <td><a href="#" class="view-details">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD12346</td>
+                                <td>May 5, 2025</td>
+                                <td>$78.50</td>
+                                <td><span class="order-status status-processing">Processing</span></td>
+                                <td><a href="#" class="view-details">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD12347</td>
+                                <td>April 28, 2025</td>
+                                <td>$243.00</td>
+                                <td><span class="order-status status-delivered">Delivered</span></td>
+                                <td><a href="#" class="view-details">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD12348</td>
+                                <td>April 15, 2025</td>
+                                <td>$65.25</td>
+                                <td><span class="order-status status-cancelled">Cancelled</span></td>
+                                <td><a href="#" class="view-details">View Details</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="dashboard-content" id="wishlist-tab" style="display: none;">
+                    <h3>My Wishlist</h3>
+                    <p>You haven't added any products to your wishlist yet.</p>
+                </div>
+                
+                <div class="dashboard-content" id="profile-tab" style="display: none;">
+                    <h3>Profile Information</h3>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="profile-name">Full Name</label>
+                            <input type="text" id="profile-name" class="form-control" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email">Email</label>
+                            <input type="email" id="profile-email" class="form-control" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-phone">Phone</label>
+                            <input type="tel" id="profile-phone" class="form-control" value="+1 (555) 123-4567">
+                        </div>
+                        <button type="submit" class="submit-btn">Update Profile</button>
+                    </form>
+                </div>
+                
+                <div class="dashboard-content" id="address-tab" style="display: none;">
+                    <h3>My Addresses</h3>
+                    <p>You haven't added any addresses yet.</p>
+                    <button class="btn" style="margin-top: 20px;">Add New Address</button>
+                </div>
+                
+                <div class="dashboard-content" id="settings-tab" style="display: none;">
+                    <h3>Account Settings</h3>
+                    <form id="settings-form">
+                        <div class="form-group">
+                            <label for="settings-password">New Password</label>
+                            <input type="password" id="settings-password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-confirm-password">Confirm New Password</label>
+                            <input type="password" id="settings-confirm-password" class="form-control">
+                        </div>
+                        <button type="submit" class="submit-btn">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products, special offers, and more!</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="Play Store">
+                        <img src="images/app-store.png" alt="App Store">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <h3>ShopEase</h3>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Shopping Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="#">Coupons</a></li>
+                        <li><a href="#">Blog Post</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2025 - ShopEase</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // Toggle Menu for Mobile View
+        function toggleMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.maxHeight) {
+                menuItems.style.maxHeight = null;
+            } else {
+                menuItems.style.maxHeight = '200px';
+            }
+        }
+        
+        // Toggle between Login and Register forms
+        function showLoginForm() {
+            document.querySelector('.form-container').classList.add('login');
+            document.querySelector('.form-container').classList.remove('register');
+            document.querySelector('.form-btn:nth-child(1)').classList.add('active');
+            document.querySelector('.form-btn:nth-child(2)').classList.remove('active');
+        }
+        
+        function showRegisterForm() {
+            document.querySelector('.form-container').classList.remove('login');
+            document.querySelector('.form-container').classList.add('register');
+            document.querySelector('.form-btn:nth-child(1)').classList.remove('active');
+            document.querySelector('.form-btn:nth-child(2)').classList.add('active');
+        }
+        
+        // Login Form Submission
+        document.getElementById('LoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, this would authenticate with a server
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // For demo purposes, just show the dashboard
+            document.getElementById('accountForms').style.display = 'none';
+            document.getElementById('userDashboard').style.display = 'block';
+            
+            // Set user name (would come from server in real app)
+            document.getElementById('user-name').textContent = email.split('@')[0];
+            
+            showNotification('Login successful!');
+        });
+        
+        // Register Form Submission
+        document.getElementById('RegisterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, this would register with a server
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!', true);
+                return;
+            }
+            
+            // For demo purposes, show login form after registration
+            showLoginForm();
+            document.getElementById('login-email').value = email;
+            
+            showNotification('Registration successful! Please login.');
+        });
+        
+        // Logout Function
+        function logout() {
+            document.getElementById('accountForms').style.display = 'block';
+            document.getElementById('userDashboard').style.display = 'none';
+            
+            // Reset forms
+            document.getElementById('LoginForm').reset();
+            document.getElementById('RegisterForm').reset();
+            
+            showNotification('You have been logged out.');
+        }
+        
+        // Show Dashboard Tab
+        function showDashboardTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.dashboard-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId + '-tab').style.display = 'block';
+            
+            // Update active menu item
+            document.querySelectorAll('.dashboard-menu a').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Profile Form Submission
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, this would update profile info on server
+            const name = document.getElementById('profile-name').value;
+            
+            // Update displayed name
+            document.getElementById('user-name').textContent = name;
+            
+            showNotification('Profile updated successfully!');
+        });
+        
+        // Settings Form Submission
+        document.getElementById('settings-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, this would update password on server
+            const password = document.getElementById('settings-password').value;
+            const confirmPassword = document.getElementById('settings-confirm-password').value;
+            
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!', true);
+                return;
+            }
+            
+            // Reset form
+            this.reset();
+            
+            showNotification('Password changed successfully!');
+        });
+        
+        // Custom Notification Function
+        function showNotification(message, isError = false) {
+            // Check if notification container exists, if not create it
+            let notificationContainer = document.querySelector('.notification-container');
+            
+            if (!notificationContainer) {
+                notificationContainer = document.createElement('div');
+                notificationContainer.className = 'notification-container';
+                document.body.appendChild(notificationContainer);
+                
+                // Add styles for notification container if not already added in script.js
+                if (!document.querySelector('style[data-for="notifications"]')) {
+                    const style = document.createElement('style');
+                    style.setAttribute('data-for', 'notifications');
+                    style.textContent = `
+                        .notification-container {
+                            position: fixed;
+                            bottom: 20px;
+                            right: 20px;
+                            z-index: 1000;
+                        }
+                        .notification {
+                            background-color: var(--primary-color);
+                            color: white;
+                            padding: 15px 20px;
+                            margin-top: 10px;
+                            border-radius: 5px;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                            opacity: 0;
+                            transform: translateY(20px);
+                            animation: fadeIn 0.3s forwards;
+                        }
+                        .notification.error {
+                            background-color: var(--danger-color);
+                        }
+                        @keyframes fadeIn {
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        @keyframes fadeOut {
+                            to {
+                                opacity: 0;
+                                transform: translateY(20px);
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            if (isError) notification.classList.add('error');
+            notification.textContent = message;
+            
+            // Add to container
+            notificationContainer.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.3s forwards';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+    <script>
+        // Show loading overlay when page loads
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('hidden');
+        });
+
+        // Loading state for buttons
+        function showButtonLoading(button) {
+            button.classList.add('button-loading');
+            button.disabled = true;
+        }
+
+        function hideButtonLoading(button) {
+            button.classList.remove('button-loading');
+            button.disabled = false;
+        }
+
+        // Loading state for form fields
+        function showFormSkeletonLoading(numFields = 6) {
+            const formContainer = document.querySelector('.form-container');
+            if (!formContainer) return;
+            
+            formContainer.innerHTML = '';
+            for (let i = 0; i < numFields; i++) {
+                const skeleton = document.createElement('div');
+                skeleton.className = 'product-skeleton';
+                skeleton.innerHTML = `
+                    <div class="form-group">
+                        <div style="height: 20px; margin: 10px 0;"></div>
+                        <div style="height: 40px; margin: 10px 0;"></div>
+                    </div>
+                `;
+                formContainer.appendChild(skeleton);
+            }
+        }
+
+        // Loading state for login/register
+        function showLoginLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'Processing login...';
+        }
+
+        function hideLoginLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('hidden');
+        }
+
+        // Loading state for profile update
+        function showProfileLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'Updating profile...';
+        }
+
+        function hideProfileLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

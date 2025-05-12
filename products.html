@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        /* Products Page Specific Styles */
+        .products-section {
+            padding: 80px 0;
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-group {
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-group label {
+            display: inline-block;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+        
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            min-width: 150px;
+        }
+        
+        .search-container {
+            display: flex;
+            margin-bottom: 10px;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        
+        .search-container input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .search-container button {
+            padding: 8px 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .search-container button:hover {
+            background: #ff3040;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .pagination span {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background: #f1f2f6;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pagination span.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .pagination span:hover:not(.active) {
+            background: #e0e0e0;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px 0;
+            font-size: 18px;
+            color: #888;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-group {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .filter-group select {
+                width: 100%;
+            }
+            
+            .search-container {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <!-- <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading products...</div>
+    </div> -->
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">ShopEase</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="title" id="category-title">All Products</h2>
+            
+            <!-- Filter and Sort Options -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter" onchange="filterByCategory(this.value)">
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="home">Home &amp; Kitchen</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-by">Sort By:</label>
+                    <select id="sort-by" onchange="sortProducts(this.value)">
+                        <option value="default">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                        <option value="name-desc">Name: Z to A</option>
+                    </select>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search products...">
+                    <button type="button" onclick="searchProductsFromInput()" aria-label="Search"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="row" id="products-container">
+                <!-- Products will be loaded dynamically via JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <span onclick="changePage(1)" class="active">1</span>
+                <span onclick="changePage(2)">2</span>
+                <span onclick="changePage(3)">3</span>
+                <span>...</span>
+                <span onclick="changePage('next')">Next &raquo;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products, special offers, and more!</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="Play Store">
+                        <img src="images/app-store.png" alt="App Store">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <h3>ShopEase</h3>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Shopping Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="coupons.html">Coupons</a></li>
+                        <li><a href="blog.html">Blog Post</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="affiliate.html">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2025 - ShopEase</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Products Page -->
+    <script>
+        // Filter by Category
+        function filterByCategory(category) {
+            if (category) {
+                window.location.href = `products.html?category=${category}`;
+            } else {
+                window.location.href = 'products.html';
+            }
+        }
+
+        // Sort Products
+        function sortProducts(sortOption) {
+            // This will be handled by the main script.js
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('sort', sortOption);
+            window.location.search = urlParams.toString();
+        }
+
+        // Search Products from Input
+        function searchProductsFromInput() {
+            const searchQuery = document.getElementById('search-input').value.trim();
+            if (searchQuery) {
+                window.location.href = `products.html?search=${encodeURIComponent(searchQuery)}`;
+            }
+        }
+
+        // Enter key for search
+        document.getElementById('search-input').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchProductsFromInput();
+            }
+        });
+
+        // Change Page (for pagination)
+        function changePage(page) {
+            // In a real application, this would update the page parameter in the URL
+            // and fetch the next set of products
+            const paginationItems = document.querySelectorAll('.pagination span');
+            paginationItems.forEach(item => item.classList.remove('active'));
+            
+            if (page === 'next') {
+                // Logic for next page
+                const activeItem = document.querySelector('.pagination span.active');
+                const nextPage = parseInt(activeItem.textContent) + 1;
+                if (nextPage <= 3) { // Assuming we have 3 pages
+                    document.querySelector(`.pagination span:nth-child(${nextPage})`).classList.add('active');
+                }
+            } else {
+                document.querySelector(`.pagination span:nth-child(${page})`).classList.add('active');
+            }
+            
+            // Scroll to top of products
+            document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Toggle Menu for Mobile View
+        function toggleMenu() {
+            const menuItems = document.getElementById('menuItems');
+            if (menuItems.style.maxHeight) {
+                menuItems.style.maxHeight = null;
+            } else {
+                menuItems.style.maxHeight = '200px';
+            }
+        }
+    </script>
+    <script>
+        // Show loading overlay when page loads
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('hidden');
+        });
+
+        // Loading state for buttons
+        function showButtonLoading(button) {
+            button.classList.add('button-loading');
+            button.disabled = true;
+        }
+
+        function hideButtonLoading(button) {
+            button.classList.remove('button-loading');
+            button.disabled = false;
+        }
+
+        // Add loading state to filter and sort functions
+        function filterByCategory(category) {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.remove('hidden');
+            
+            // Your existing filter logic here
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 500); // Simulate loading time
+        }
+
+        function sortProducts(sortOption) {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.remove('hidden');
+            
+            // Your existing sort logic here
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 500); // Simulate loading time
+        }
+
+        function searchProductsFromInput() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.remove('hidden');
+            
+            // Your existing search logic here
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 500); // Simulate loading time
+        }
+
+        // Add skeleton loading for products
+        function showSkeletonLoading(numProducts = 4) {
+            const productsContainer = document.getElementById('products-container');
+            productsContainer.innerHTML = '';
+            for (let i = 0; i < numProducts; i++) {
+                const skeleton = document.createElement('div');
+                skeleton.className = 'product-skeleton';
+                skeleton.innerHTML = `
+                    <div class="product-card">
+                        <div class="product-image" style="height: 200px;"></div>
+                        <div class="product-info" style="padding: 15px;">
+                            <div style="height: 20px; margin: 10px 0;"></div>
+                            <div style="height: 20px; margin: 10px 0;"></div>
+                            <div style="height: 20px; margin: 10px 0;"></div>
+                        </div>
+                    </div>
+                `;
+                productsContainer.appendChild(skeleton);
+            }
+        }
+
+        // Add loading state to pagination
+        function changePage(page) {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.remove('hidden');
+            
+            // Your existing pagination logic here
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 500); // Simulate loading time
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

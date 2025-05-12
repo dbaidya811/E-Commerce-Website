@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Categories - ShopEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        .categories-page {
+            padding: 80px 0;
+        }
+        
+        .category-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .category-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .category-info p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .category-card:hover .category-overlay {
+            opacity: 1;
+        }
+        
+        .category-overlay h3 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">ShopEase</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Categories Page -->
+    <section class="categories-page">
+        <div class="container">
+            <h2 class="title">Product Categories</h2>
+            
+            <div class="row">
+                <!-- Electronics Category -->
+                <div class="col-3">
+                    <div class="category-card">
+                        <img src="https://i.pinimg.com/736x/1f/57/14/1f57141ac89bf6d33bb32f507cd0f7cd.jpg" alt="Electronics" class="category-img">
+                        <div class="category-info">
+                            <h3>Electronics</h3>
+                            <p>Latest gadgets and electronic devices</p>
+                            <a href="products.html?category=electronics" class="btn">View Products</a>
+                        </div>
+                        <!-- <div class="category-overlay">
+                            <h3>Electronics</h3>
+                            <a href="products.html?category=electronics" class="btn">Explore Now</a>
+                        </div> -->
+                    </div>
+                </div>
+                
+                <!-- Fashion Category -->
+                <div class="col-3">
+                    <div class="category-card">
+                        <img src="https://i.pinimg.com/736x/25/cb/3b/25cb3bfc1d033a5cb20fe4f2f7d299e0.jpg" alt="Fashion" class="category-img">
+                        <!-- <div class="category-info">
+                            <h3>Fashion</h3>
+                            <p>Trendy clothing and accessories</p>
+                            <a href="products.html?category=fashion" class="btn">View Products</a>
+                        </div> -->
+                        <div class="category-overlay">
+                            <h3>Fashion</h3>
+                            <a href="products.html?category=fashion" class="btn">Explore Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Home & Kitchen Category -->
+                <div class="col-3">
+                    <div class="category-card">
+                        <img src="https://i.pinimg.com/736x/37/9b/cb/379bcbaf32ae749c86b3328786be0b9f.jpg" alt="Home & Kitchen" class="category-img">
+                        <div class="category-info">
+                            <h3>Home & Kitchen</h3>
+                            <p>Essential home and kitchen products</p>
+                            <a href="products.html?category=home" class="btn">View Products</a>
+                        </div>
+                        <!-- <div class="category-overlay">
+                            <h3>Home & Kitchen</h3>
+                            <a href="products.html?category=home" class="btn">Explore Now</a>
+                        </div> -->
+                    </div>
+                </div>
+                
+                <!-- Beauty Category -->
+                <div class="col-3">
+                    <div class="category-card">
+                        <img src="https://i.pinimg.com/736x/2b/6a/d0/2b6ad067c1d0276fca5c27bc13ece835.jpg" alt="Beauty" class="category-img">
+                        <!-- <div class="category-info">
+                            <h3>Beauty</h3>
+                            <p>Makeup, skincare, and beauty products</p>
+                            <a href="products.html?category=beauty" class="btn">View Products</a>
+                        </div> -->
+                        <div class="category-overlay">
+                            <h3>Beauty</h3>
+                            <a href="products.html?category=beauty" class="btn">Explore Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sports Category -->
+                <div class="col-3">
+                    <div class="category-card">
+                        <img src="https://i.pinimg.com/736x/68/78/d7/6878d7cb61de8157d168cf56724b1933.jpg" alt="Sports" class="category-img">
+                        <div class="category-info">
+                            <h3>Sports</h3>
+                            <p>Sports equipment and fitness gear</p>
+                            <a href="products.html?category=sports" class="btn">View Products</a>
+                        </div>
+                        <!-- <div class="category-overlay">
+                            <h3>Sports</h3>
+                            <a href="products.html?category=sports" class="btn">Explore Now</a>
+                        </div> -->
+                    </div>
+                </div>
+                
+                <!-- Books Category -->
+                <div class="col-3">
+                    <div class="category-card">
+                        <img src="https://i.pinimg.com/736x/40/02/28/4002285fe60ca57926964f258f726170.jpg" alt="Books" class="category-img">
+                        <!-- <div class="category-info">
+                            <h3>Books</h3>
+                            <p>Fiction, non-fiction, and educational books</p>
+                            <a href="products.html?category=books" class="btn">View Products</a>
+                        </div> -->
+                        <div class="category-overlay">
+                            <h3>Books</h3>
+                            <a href="products.html?category=books" class="btn">Explore Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products, special offers, and more!</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="Play Store">
+                        <img src="images/app-store.png" alt="App Store">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <h3>ShopEase</h3>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Shopping Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="coupons.html">Coupons</a></li>
+                        <li><a href="blog.html">Blog Post</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="affiliate.html">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2025 - ShopEase</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

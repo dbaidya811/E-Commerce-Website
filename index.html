@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Your One-Stop Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <!-- <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading page...</div>
+    </div> -->
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">ShopEase</a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <h1>Give Your Shopping <br>A New Style!</h1>
+                    <p>Success isn't always about greatness. It's about consistency. Consistent <br>hard work gains success. Greatness will come.</p>
+                    <a href="products.html" class="btn">Explore Now &#8594;</a>
+                </div>
+                <div class="col-2">
+                    <img src="images/vx.png" alt="Hero Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="title">Featured Categories</h2>
+            <div class="row">
+                <div class="col-3">
+                    <a href="products.html?category=electronics"><img src="https://i.pinimg.com/736x/ce/a2/d4/cea2d4993e8cb414b8235972fd4b0115.jpg" alt="Electronics"></a>
+                    <h3>Electronics</h3>
+                </div>
+                <div class="col-3">
+                    <a href="products.html?category=fashion"><img src="https://i.pinimg.com/736x/25/cb/3b/25cb3bfc1d033a5cb20fe4f2f7d299e0.jpg" alt="Fashion"></a>
+                    <h3>Fashion</h3>
+                </div>
+                <div class="col-3">
+                    <a href="products.html?category=home"><img src="https://i.pinimg.com/736x/70/a6/a6/70a6a68cf802d78aa33dbba6c533f6df.jpg" alt="Home & Kitchen"></a>
+                    <h3>Home & Kitchen</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="title">Featured Products</h2>
+            <div class="row" id="featured-products-container">
+                <!-- Products will be loaded dynamically -->
+                <div class="col-4">
+                    <img src="https://i.pinimg.com/736x/27/74/7d/27747ddb3c631a5edcc80d58a3f84433.jpg" alt="Product 1">
+                    <h4>Red Printed T-Shirt</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>$50.00</p>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+                <div class="col-4">
+                    <img src="https://i.pinimg.com/736x/d0/d6/f3/d0d6f3c19751faa99f1fb21458c3868e.jpg" alt="Product 2">
+                    <h4>HRX Sports Shoes</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>$75.00</p>
+                    <button class="add-to-cart-btn" data-id="2">Add to Cart</button>
+                </div>
+                <div class="col-4">
+                    <img src="https://i.pinimg.com/736x/24/19/41/2419415f8cdad91b57111b8026199af2.jpg" alt="Product 3">
+                    <h4>Casual Pants</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>$45.00</p>
+                    <button class="add-to-cart-btn" data-id="3">Add to Cart</button>
+                </div>
+                <div class="col-4">
+                    <img src="https://i.pinimg.com/736x/e3/e0/cb/e3e0cba8a74db1bbb283981a84561acc.jpg" alt="Product 4">
+                    <h4>Blue Printed T-Shirt</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p>$55.00</p>
+                    <button class="add-to-cart-btn" data-id="4">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section class="offer">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="images/ex.png" class="offer-img" alt="Exclusive Product">
+                </div>
+                <div class="col-2">
+                    <p>Exclusively Available on ShopEase</p>
+                    <h1>Smart Band 4</h1>
+                    <small>The Smart Band 4 features a 39.9% larger AMOLED color full-touch display with adjustable brightness, so everything is clear as can be.</small>
+                    <br>
+                    <a href="products.html?id=special-offer" class="btn">Buy Now &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="title">Customer Reviews</h2>
+            <div class="row">
+                <div class="col-3">
+                    <i class="fas fa-quote-left"></i>
+                    <p>ShopEase has completely transformed my online shopping experience. The website is intuitive, the products are high-quality, and the delivery is always on time!</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <img src="https://i.pinimg.com/736x/d0/d0/75/d0d0752fe1abd3675a2d3385e3313908.jpg" alt="Customer 1">
+                    <h3>Sarah Johnson</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fas fa-quote-left"></i>
+                    <p>I've been a loyal customer for over a year now. The customer service is exceptional, and they always go above and beyond to ensure satisfaction.</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <img src="https://i.pinimg.com/736x/99/95/f5/9995f595f638c00d4cec0b5a15ba51f6.jpg" alt="Customer 2">
+                    <h3>Mike Anderson</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fas fa-quote-left"></i>
+                    <p>The variety of products available on ShopEase is impressive. I found exactly what I was looking for at a great price. Highly recommended!</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <img src="https://i.pinimg.com/736x/f5/84/ac/f584ac444a8eedb9a50b003b2b9649f3.jpg" alt="Customer 3">
+                    <h3>Emily Parker</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands -->
+    <section class="brands">
+        <div class="container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="https://i.pinimg.com/736x/43/17/2f/43172f4bbc43b23ac694860b4c830538.jpg" alt="Godrej">
+                </div>
+                <div class="col-5">
+                    <img src="https://i.pinimg.com/736x/4b/6a/51/4b6a5172d8aaf0fab1f1e406bb0a21ba.jpg" alt="Oppo">
+                </div>
+                <div class="col-5">
+                    <img src="https://i.pinimg.com/736x/50/9f/bc/509fbc93c9d63ab71bc84e006d08e91f.jpg" alt="Coca Cola">
+                </div>
+                <div class="col-5">
+                    <img src="https://i.pinimg.com/736x/fd/b4/ef/fdb4efb9ec1f26dd2fac539282074f6f.jpg" alt="Paypal">
+                </div>
+                <div class="col-5">
+                    <img src="https://i.pinimg.com/736x/34/b6/66/34b66646783f061e1418dd1a210efb1f.jpg" alt="Philips">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products, special offers, and more!</p>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="Play Store">
+                        <img src="images/app-store.png" alt="App Store">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <h3>ShopEase</h3>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Shopping Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="coupons.html">Coupons</a></li>
+                        <li><a href="blog.html">Blog Post</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="affiliate.html">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2025 - ShopEase</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        // Show loading overlay when page loads
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('hidden');
+        });
+
+        // Loading state for buttons
+        function showButtonLoading(button) {
+            button.classList.add('button-loading');
+            button.disabled = true;
+        }
+
+        function hideButtonLoading(button) {
+            button.classList.remove('button-loading');
+            button.disabled = false;
+        }
+
+        // Loading state for product cards
+        function showProductSkeletonLoading(numProducts = 4) {
+            const featuredProducts = document.querySelector('.featured-products');
+            if (!featuredProducts) return;
+            
+            featuredProducts.innerHTML = '';
+            for (let i = 0; i < numProducts; i++) {
+                const skeleton = document.createElement('div');
+                skeleton.className = 'product-skeleton';
+                skeleton.innerHTML = `
+                    <div class="product-card">
+                        <div class="product-image" style="height: 200px;"></div>
+                        <div class="product-info" style="padding: 15px;">
+                            <div style="height: 20px; margin: 10px 0;"></div>
+                            <div style="height: 20px; margin: 10px 0;"></div>
+                            <div style="height: 20px; margin: 10px 0;"></div>
+                        </div>
+                    </div>
+                `;
+                featuredProducts.appendChild(skeleton);
+            }
+        }
+    </script>
+</body>
+</html>
